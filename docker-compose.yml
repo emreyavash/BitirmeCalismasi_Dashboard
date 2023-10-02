@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  dashboard:
+    container_name: dashboard
+    image: dashboard
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports: 
+      - "8010:80"
+    volumes: 
+      - ./src:/app/src
+      - ./public/assets:/app/public/assets
+      - /app/node_modules
+    stdin_open: true
+    tty: true
+    command: yarn run start

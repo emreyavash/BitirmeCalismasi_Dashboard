@@ -1,17 +1,92 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import Login from './components/Auth/Login';
+import Register from './components/Auth/Register';
+
+import ProductList from './components/ProductList/ProductList';
+import ProductAdd from './components/Product/ProductAdd';
+
+import CategoryList from './components/CategoryList/CategoryList';
+import ProductEdit from './components/Product/ProductEdit';
+import CategoryAdd from './components/Category/CategoryAdd';
+import CategoryEdit from './components/Category/CategoryEdit';
+import UserList from './components/UserList/UserList';
+import UserEdit from './components/User/UserEdit';
+import ProductAlbum from './components/ProductList/ProductAlbum';
+import Basket from './components/Basket/Basket';
+import Order from './components/Order/Order';
+const router = createBrowserRouter([
+  {
+    path:"/",
+    element: <App/>,
+    children:[
+      {
+        path:"ProductList/",
+        element: <ProductList/>
+        
+      },
+      {
+        path:"Categories/",
+        element: <CategoryList/>
+      },
+      {
+        path:"Category_Add/",
+        element: <CategoryAdd/>
+      },
+      {
+        path:"CategoryEdit/:id",
+        element: <CategoryEdit/>
+      },
+      {
+        path:"Product_add/",
+        element:<ProductAdd/>
+      },
+      {
+        path:"ProductEdit/:id",
+        element:<ProductEdit />
+      },
+      {
+        path:"UserList/",
+        element:<UserList />
+      },
+      {
+        path:"UserEdit/:id",
+        element:<UserEdit/>
+      }
+      ,
+      {
+        path:"/Products/",
+        element:<ProductAlbum/>
+      },
+      {
+        path:"/Sepet/",
+        element:<Basket/>
+      },
+      {
+        path:"/Siparislerim/",
+        element:<Order/>
+      },
+    ]
+  },
+  {
+    path:"giris/",
+    element: <Login/>
+  },
+  {
+    path:"kayit_ol/",
+    element: <Register/>
+  }
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <>
+    <RouterProvider router={router}/>
+  </>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
